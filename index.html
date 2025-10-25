@@ -832,7 +832,7 @@ window.addEventListener("scroll", function() {
   // Reemplaza por tus credenciales de EmailJS
   const EMAILJS_PUBLIC_KEY = "1PBlYfRMXdLAhHVHR";
   const EMAILJS_SERVICE_ID = "service_uyu0zqu";
-  const EMAILJS_TEMPLATE_ID = "REEMPLAZAR_TEMPLATE_ID"; // ej: "template_xxxxxx"
+  const EMAILJS_TEMPLATE_ID = "template_7vg69of";
 
   if (window.emailjs) {
     emailjs.init(EMAILJS_PUBLIC_KEY);
@@ -844,7 +844,7 @@ window.addEventListener("scroll", function() {
     const email = this.querySelector("input[type='email']").value.trim();
     const mensaje = this.querySelector("textarea").value.trim();
 
-    if (!EMAILJS_TEMPLATE_ID || EMAILJS_TEMPLATE_ID.startsWith("REEMPLAZAR")) {
+    if (!EMAILJS_TEMPLATE_ID) {
       alert("Configura EmailJS (publicKey/serviceId/templateId) antes de enviar.");
       return;
     }
@@ -856,6 +856,7 @@ window.addEventListener("scroll", function() {
         name: nombre,
         reply_to: email,
         message: mensaje,
+        title: "Contacto web",
         to_email: "rosariocallem@gmail.com"
       });
       alert("¡Mensaje enviado! Te responderé pronto.");
