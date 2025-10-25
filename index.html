@@ -830,8 +830,8 @@ window.addEventListener("scroll", function() {
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script>
   // Reemplaza por tus credenciales de EmailJS
-  const EMAILJS_PUBLIC_KEY = "REEMPLAZAR_PUBLIC_KEY"; // ej: "AbCdEfGhI12345"
-  const EMAILJS_SERVICE_ID = "REEMPLAZAR_SERVICE_ID"; // ej: "service_xxxxxx"
+  const EMAILJS_PUBLIC_KEY = "1PBlYfRMXdLAhHVHR";
+  const EMAILJS_SERVICE_ID = "service_uyu0zqu";
   const EMAILJS_TEMPLATE_ID = "REEMPLAZAR_TEMPLATE_ID"; // ej: "template_xxxxxx"
 
   if (window.emailjs) {
@@ -844,14 +844,16 @@ window.addEventListener("scroll", function() {
     const email = this.querySelector("input[type='email']").value.trim();
     const mensaje = this.querySelector("textarea").value.trim();
 
-    if (!EMAILJS_PUBLIC_KEY || EMAILJS_PUBLIC_KEY.startsWith("REEMPLAZAR")) {
+    if (!EMAILJS_TEMPLATE_ID || EMAILJS_TEMPLATE_ID.startsWith("REEMPLAZAR")) {
       alert("Configura EmailJS (publicKey/serviceId/templateId) antes de enviar.");
       return;
     }
 
     try {
       await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+        // Mandamos ambas claves para coincidir con el template
         from_name: nombre,
+        name: nombre,
         reply_to: email,
         message: mensaje,
         to_email: "rosariocallem@gmail.com"
