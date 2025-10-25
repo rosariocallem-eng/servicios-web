@@ -745,7 +745,7 @@ nav ul li a.active {
     <a href="#"><i class="fab fa-facebook-f"></i></a>
     <a href="#"><i class="fab fa-instagram"></i></a>
     <a href="#"><i class="fab fa-linkedin-in"></i></a>
-    <a href="#"><i class="fab fa-whatsapp"></i></a>
+    <a id="whatsapp-footer" href="https://wa.me/51950203085" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
   </div>
 
   
@@ -826,17 +826,43 @@ window.addEventListener("scroll", function() {
   }
 });
 </script>
+<!-- EmailJS - envío por correo -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script>
-document.querySelector(".contact-form").addEventListener("submit", function(e) {
-  e.preventDefault();
-  const nombre = this.querySelector("input[type='text']").value;
-  const email = this.querySelector("input[type='email']").value;
-  const mensaje = this.querySelector("textarea").value;
-  
-  const texto = `Hola, soy ${nombre}. Mi correo es ${email}. ${mensaje}`;
-  const url = `https://wa.me/51950203085?text=${encodeURIComponent(texto)}`;
-  window.open(url, "_blank");
-});
+  // Reemplaza por tus credenciales de EmailJS
+  const EMAILJS_PUBLIC_KEY = "REEMPLAZAR_PUBLIC_KEY"; // ej: "AbCdEfGhI12345"
+  const EMAILJS_SERVICE_ID = "REEMPLAZAR_SERVICE_ID"; // ej: "service_xxxxxx"
+  const EMAILJS_TEMPLATE_ID = "REEMPLAZAR_TEMPLATE_ID"; // ej: "template_xxxxxx"
+
+  if (window.emailjs) {
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+  }
+
+  document.querySelector(".contact-form").addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const nombre = this.querySelector("input[type='text']").value.trim();
+    const email = this.querySelector("input[type='email']").value.trim();
+    const mensaje = this.querySelector("textarea").value.trim();
+
+    if (!EMAILJS_PUBLIC_KEY || EMAILJS_PUBLIC_KEY.startsWith("REEMPLAZAR")) {
+      alert("Configura EmailJS (publicKey/serviceId/templateId) antes de enviar.");
+      return;
+    }
+
+    try {
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+        from_name: nombre,
+        reply_to: email,
+        message: mensaje,
+        to_email: "rosariocallem@gmail.com"
+      });
+      alert("¡Mensaje enviado! Te responderé pronto.");
+      this.reset();
+    } catch (err) {
+      console.error(err);
+      alert("Hubo un error al enviar. Intenta de nuevo.");
+    }
+  });
 </script>
 <script>
 const elementos = document.querySelectorAll('.animado');
