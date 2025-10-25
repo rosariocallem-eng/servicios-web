@@ -835,7 +835,9 @@ window.addEventListener("scroll", function() {
   const EMAILJS_TEMPLATE_ID = "template_7vg69of";
 
   if (window.emailjs) {
-    emailjs.init(EMAILJS_PUBLIC_KEY);
+    // EmailJS v3 init signature
+    try { emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY }); }
+    catch(e){ console.warn('EmailJS init warning:', e); }
   }
 
   document.querySelector(".contact-form").addEventListener("submit", async function(e) {
@@ -865,6 +867,9 @@ window.addEventListener("scroll", function() {
       console.error("EmailJS error:", err);
       let msg = "Hubo un error al enviar.";
       const txt = (err && (err.text || err.message)) ? String(err.text || err.message) : "";
+      if (/account\s+not\s+found/i.test(txt)) {
+        msg += "\nCausa probable: Public Key incorrecta o con espacios. Copia y pega tu 'Public Key' exacta desde EmailJS (Account > API keys) y vuelve a intentarlo.";
+      }
       if (/origin|not allowed|forbidden|403/i.test(txt)) {
         msg += "\nPosible causa: origen no permitido. En EmailJS > Account > Security agrega tu dominio (ej. http://localhost:5500) o prueba sirviendo el sitio con un servidor local en lugar de abrir el archivo directamente.";
       } else if (txt) {
