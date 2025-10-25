@@ -835,8 +835,8 @@ window.addEventListener("scroll", function() {
   const EMAILJS_TEMPLATE_ID = "template_7vg69of";
 
   if (window.emailjs) {
-    // EmailJS v3 init signature
-    try { emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY }); }
+    // Inicialización en forma simple (cadena) para evitar discrepancias
+    try { emailjs.init(EMAILJS_PUBLIC_KEY); }
     catch(e){ console.warn('EmailJS init warning:', e); }
   }
 
