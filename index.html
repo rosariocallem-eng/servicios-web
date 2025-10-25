@@ -729,10 +729,10 @@ nav ul li a.active {
 
   <p>¿Tienes un proyecto en mente o quieres trabajar conmigo? ¡Escríbeme!</p>
 
-  <form class="contact-form">
-    <input type="text" placeholder="Tu nombre" required>
-    <input type="email" placeholder="Tu correo" required>
-    <textarea placeholder="Escribe tu mensaje..." required></textarea>
+  <form class="contact-form" action="https://formspree.io/f/REEMPLAZAR" method="POST">
+    <input type="text" name="name" placeholder="Tu nombre" required>
+    <input type="email" name="email" placeholder="Tu correo" required>
+    <textarea name="message" placeholder="Escribe tu mensaje..." required></textarea>
     <button type="submit">Enviar mensaje</button>
   </form>
  
@@ -826,56 +826,33 @@ window.addEventListener("scroll", function() {
   }
 });
 </script>
-<!-- EmailJS - envío por correo -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<!-- Formspree - envío por correo -->
 <script>
-  // Reemplaza por tus credenciales de EmailJS
-  const EMAILJS_PUBLIC_KEY = "u9QXes__zs-wvR91G";
-  const EMAILJS_SERVICE_ID = "service_uyu0zqu";
-  const EMAILJS_TEMPLATE_ID = "template_7vg69of";
-
-  if (window.emailjs) {
-    // Inicialización en forma simple (cadena) para evitar discrepancias
-    try { emailjs.init(EMAILJS_PUBLIC_KEY); }
-    catch(e){ console.warn('EmailJS init warning:', e); }
-  }
-
-  document.querySelector(".contact-form").addEventListener("submit", async function(e) {
+  const form = document.querySelector('.contact-form');
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const nombre = this.querySelector("input[type='text']").value.trim();
-    const email = this.querySelector("input[type='email']").value.trim();
-    const mensaje = this.querySelector("textarea").value.trim();
-
-    if (!EMAILJS_TEMPLATE_ID) {
-      alert("Configura EmailJS (publicKey/serviceId/templateId) antes de enviar.");
+    const action = form.getAttribute('action');
+    if (!action || /REEMPLAZAR/.test(action)) {
+      alert('Configura tu endpoint de Formspree en el atributo action del formulario.');
       return;
     }
-
     try {
-      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-        // Mandamos ambas claves para coincidir con el template
-        from_name: nombre,
-        name: nombre,
-        reply_to: email,
-        message: mensaje,
-        title: "Contacto web",
-        to_email: "rosariocallem@gmail.com"
+      const resp = await fetch(action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
       });
-      alert("¡Mensaje enviado! Te responderé pronto.");
-      this.reset();
+      if (resp.ok) {
+        alert('¡Mensaje enviado! Te responderé pronto.');
+        form.reset();
+      } else {
+        const data = await resp.json().catch(() => null);
+        const detail = data && data.errors ? data.errors.map(e => e.message).join(', ') : resp.statusText;
+        alert('Hubo un error al enviar. ' + (detail ? ('Detalle: ' + detail) : ''));
+      }
     } catch (err) {
-      console.error("EmailJS error:", err);
-      let msg = "Hubo un error al enviar.";
-      const txt = (err && (err.text || err.message)) ? String(err.text || err.message) : "";
-      if (/account\s+not\s+found/i.test(txt)) {
-        msg += "\nCausa probable: Public Key incorrecta o con espacios. Copia y pega tu 'Public Key' exacta desde EmailJS (Account > API keys) y vuelve a intentarlo.";
-      }
-      if (/origin|not allowed|forbidden|403/i.test(txt)) {
-        msg += "\nPosible causa: origen no permitido. En EmailJS > Account > Security agrega tu dominio (ej. http://localhost:5500) o prueba sirviendo el sitio con un servidor local en lugar de abrir el archivo directamente.";
-      } else if (txt) {
-        msg += "\nDetalle: " + txt;
-      }
-      alert(msg);
+      console.error('Formspree error:', err);
+      alert('Hubo un error de red al enviar. Intenta nuevamente.');
     }
   });
 </script>
