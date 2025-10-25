@@ -721,6 +721,7 @@ nav ul li a.active {
 
   <!-- CONTACTO -->
 <section id="contacto" class="contact-section animado">
+  <div id="particles-contact"></div>
   <h2>Contáctame</h2>
     <div class="gatito-contacto">
     <img src="./img/gatito.png" alt="Gatito elegante" />
@@ -793,6 +794,25 @@ particlesJS("particles-hero", {
     "modes": { "repulse": { "distance": 100 } }
   },
   "retina_detect": true
+});
+</script>
+
+<!-- Partículas contacto -->
+<script>
+particlesJS("particles-contact", {
+  particles: {
+    number: { value: 60 },
+    color: { value: "#b266ff" },
+    shape: { type: "circle" },
+    opacity: { value: 0.3 },
+    size: { value: 2.5 },
+    move: { enable: true, speed: 1.2 }
+  },
+  interactivity: {
+    events: { onhover: { enable: true, mode: "repulse" } },
+    modes: { repulse: { distance: 120 } }
+  },
+  retina_detect: true
 });
 </script>
 
@@ -974,6 +994,19 @@ body {
 }
 
 
+ </style>
+
+<!-- CSS extra: Partículas contacto -->
+<style>
+#particles-contact {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
 </style>
 
 
