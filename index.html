@@ -882,6 +882,29 @@ window.addEventListener('load', mostrarElemento);
       ? '<i class="fas fa-times"></i>'
       : '<i class="fas fa-bars"></i>';
   });
+
+  // Cerrar el menú móvil al hacer clic en un enlace y hacer scroll suave
+  const navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');
+  navAnchors.forEach((a) => {
+    a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href');
+      if (id && id.startsWith('#')) {
+        e.preventDefault();
+        // Cierra el panel
+        if (navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+        }
+        // Scroll compensando la altura del nav fijo
+        const target = document.querySelector(id);
+        if (target) {
+          const navHeight = 70; // aprox alto del nav
+          const y = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }
+    });
+  });
 </script>
 
 
