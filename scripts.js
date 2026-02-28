@@ -10,7 +10,7 @@
     // 1) Filtro de categorías del portafolio
     try {
       const filterButtons = document.querySelectorAll('.filter-btn');
-      const projects = document.querySelectorAll('.project');
+      const projects = document.querySelectorAll('#project-gallery .project');
       if (filterButtons.length && projects.length) {
         filterButtons.forEach((button) => {
           button.addEventListener('click', () => {
