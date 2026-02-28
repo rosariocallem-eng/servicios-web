@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LexAcademia Pro — Aula Jurídica Virtual</title>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+
+<header class="navbar">
+  <div class="logo">⚖️ <span>LexAcademia Pro</span></div>
+  <nav>
+    <a href="#sobre">Sobre</a>
+    <a href="#cursos">Cursos</a>
+    <a href="#contacto">Contacto</a>
+    <button id="loginBtn" class="btn-gold">Acceder</button>
+  </nav>
+</header>
+<section class="hero">
+  <video autoplay muted loop playsinline class="hero-video">
+    <source src="https://videos.pexels.com/video-files/852362/852362-hd_1920_1080_30fps.mp4" type="video/mp4">
+    Tu navegador no soporta videos HTML5.
+  </video>
+
+  <div class="hero-content">
+    <h1>Formación Jurídica Profesional</h1>
+    <p>Capacitación moderna, práctica y 100% online para abogados y estudiantes de derecho.</p>
+    <a href="Aula/index.html" class="btn-gold">Ir al Aula Virtual</a>
+  </div>
+</section>
+
+
+
+<!-- Modal de Login -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Iniciar Sesión</h2>
+    <input type="text" id="user" placeholder="Correo electrónico" />
+    <input type="password" id="pass" placeholder="Contraseña" />
+    <button onclick="login()" class="btn-gold">Ingresar</button>
+    <p class="small muted">Demo: alumno@demo.com / demo123</p>
+  </div>
+</div>
+
+<section id="sobre" class="section">
+  <div class="grid-2">
+    <div>
+      <h2>Sobre LexAcademia Pro</h2>
+      <p>Centro de formación jurídica diseñado para brindar conocimiento actualizado y práctico. Creemos en el aprendizaje continuo y la excelencia profesional.</p>
+      <ul>
+        <li>✔️ Docentes especializados</li>
+        <li>✔️ Certificación digital</li>
+        <li>✔️ Modalidad 100% online</li>
+      </ul>
+    </div>
+    <div>
+      <img src="https://images.pexels.com/photos/4427614/pexels-photo-4427614.jpeg" alt="Abogada trabajando" class="rounded">
+    </div>
+  </div>
+</section>
+
+<section id="cursos" class="section bg-light">
+  <h2>Cursos destacados</h2>
+  <div class="grid-3">
+    <div class="card">
+      <h3>Redacción de Contratos</h3>
+      <p>Domina la estructura, cláusulas y negociación de contratos modernos.</p>
+    </div>
+    <div class="card">
+      <h3>Derecho Laboral Práctico</h3>
+      <p>Analiza casos reales y aprende estrategias de defensa laboral.</p>
+    </div>
+    <div class="card">
+      <h3>Litigación Oral</h3>
+      <p>Desarrolla habilidades de argumentación jurídica y exposición oral.</p>
+    </div>
+  </div>
+</section>
+
+<footer id="contacto" class="footer">
+  <p>© 2025 LexAcademia Pro — Formación Jurídica Profesional</p>
+</footer>
+
+<script src="./js/app.js"></script>
+</body>
+</html>
+

@@ -175,6 +175,32 @@
         });
       }
     } catch {}
+
+    // 7) Click en cards del portafolio
+    try {
+      const projectCards = document.querySelectorAll('.project');
+      projectCards.forEach((card) => {
+        const imageEl = card.querySelector('img');
+        const targetUrl = card.dataset.url || (imageEl ? imageEl.src : '');
+        if (!targetUrl) return;
+
+        card.setAttribute('role', 'link');
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('aria-label', 'Abrir proyecto');
+
+        const openProject = () => {
+          window.open(targetUrl, '_blank', 'noopener');
+        };
+
+        card.addEventListener('click', openProject);
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openProject();
+          }
+        });
+      });
+    } catch {}
   });
 })();
 
