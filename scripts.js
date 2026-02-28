@@ -138,11 +138,19 @@
       const hamburger = document.querySelector('.hamburger');
       const navLinks = document.querySelector('.nav-links');
       if (hamburger && navLinks) {
-        hamburger.addEventListener('click', () => {
-          navLinks.classList.toggle('active');
-          hamburger.innerHTML = navLinks.classList.contains('active')
+        const setMenuState = (isOpen) => {
+          navLinks.classList.toggle('active', isOpen);
+          hamburger.setAttribute('aria-expanded', String(isOpen));
+          hamburger.innerHTML = isOpen
             ? '<i class="fas fa-times"></i>'
             : '<i class="fas fa-bars"></i>';
+        };
+
+        setMenuState(false);
+
+        hamburger.addEventListener('click', () => {
+          const isOpen = !navLinks.classList.contains('active');
+          setMenuState(isOpen);
         });
 
         const navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');
@@ -151,10 +159,7 @@
             const id = a.getAttribute('href');
             if (id && id.startsWith('#')) {
               e.preventDefault();
-              if (navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
-              }
+              setMenuState(false);
               const target = document.querySelector(id);
               if (target) {
                 const navHeight = 70;
@@ -163,6 +168,10 @@
               }
             }
           });
+        });
+
+        window.addEventListener('resize', () => {
+          if (window.innerWidth > 768) setMenuState(false);
         });
       }
     } catch {}

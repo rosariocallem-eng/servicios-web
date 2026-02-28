@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -190,6 +190,11 @@ nav {
   font-size: 1.6rem;
   color: #eee;
   cursor: pointer;
+  background: transparent;
+  border: 0;
+  line-height: 1;
+  position: relative;
+  z-index: 1101;
 }
 
 /* ======= RESPONSIVE MENU ======= */
@@ -197,7 +202,7 @@ nav {
   .nav-links {
     position: fixed;
     top: 70px;
-    right: -100%;
+    right: 0;
     width: 100%;
     height: calc(100vh - 70px);
     background: #0b0b0b;
@@ -205,11 +210,17 @@ nav {
     justify-content: center;
     align-items: center;
     gap: 40px;
-    transition: right 0.4s ease;
+    transform: translateX(100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.35s ease, opacity 0.25s ease;
+    z-index: 1100;
   }
 
   .nav-links.active {
-    right: 0;
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .hamburger {
@@ -630,15 +641,15 @@ nav ul li a.active {
 <header>
   <nav class="navbar">
     <h1 class="logo">Kallpa Web</h1>
-    <ul class="nav-links">
+    <ul class="nav-links" id="menu-principal">
       <li><a href="#inicio">Inicio</a></li>
       <li><a href="#portafolio">Portafolio</a></li>
       <li><a href="#sobre-mi">Sobre mí</a></li>
       <li><a href="#contacto">Contacto</a></li>
     </ul>
-    <div class="hamburger">
+    <button class="hamburger" type="button" aria-label="Abrir menu" aria-controls="menu-principal" aria-expanded="false">
       <i class="fas fa-bars"></i>
-    </div>
+    </button>
   </nav>
     <div id="particles-hero"></div>
    <div class="hero-content">
@@ -746,7 +757,7 @@ nav ul li a.active {
     <a href="#"><i class="fab fa-facebook-f"></i></a>
     <a href="#"><i class="fab fa-instagram"></i></a>
     <a href="#"><i class="fab fa-linkedin-in"></i></a>
-    <a id="whatsapp-footer" href="https://wa.me/51950203085" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+    <a id="whatsapp-footer" href="https://wa.me/989254788" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
   </div>
 
   
@@ -754,7 +765,7 @@ nav ul li a.active {
 
 
   <footer>
-    © 2025 Diseños Web por <a href="#">Rosario Calle</a> 💜
+    © 2025 Diseños Web por <a href="#">Rosario Calle</a> ♥
   </footer>
 
 
@@ -874,45 +885,8 @@ const mostrarElemento = () => {
 window.addEventListener('scroll', mostrarElemento);
 window.addEventListener('load', mostrarElemento);
 </script>
-<script>
-  const hamburger = document.querySelector('.hamburger');
-  const navLinks = document.querySelector('.nav-links');
-
-  hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    hamburger.innerHTML = navLinks.classList.contains('active')
-      ? '<i class="fas fa-times"></i>'
-      : '<i class="fas fa-bars"></i>';
-  });
-
-  // Cerrar el menú móvil al hacer clic en un enlace y hacer scroll suave
-  const navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');
-  navAnchors.forEach((a) => {
-    a.addEventListener('click', (e) => {
-      const id = a.getAttribute('href');
-      if (id && id.startsWith('#')) {
-        e.preventDefault();
-        // Cierra el panel
-        if (navLinks.classList.contains('active')) {
-          navLinks.classList.remove('active');
-          hamburger.innerHTML = '<i class="fas fa-bars"></i>';
-        }
-        // Scroll compensando la altura del nav fijo
-        const target = document.querySelector(id);
-        if (target) {
-          const navHeight = 70; // aprox alto del nav
-          const y = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
-          window.scrollTo({ top: y, behavior: 'smooth' });
-        }
-      }
-    });
-  });
-</script>
-
-
-
 <style>
-/* 🐱 Gatito flotante debajo del texto del formulario */
+/* Gatito flotante debajo del texto del formulario */
 .gatito-contacto {
   position: absolute;
   left: 12%;
@@ -1056,3 +1030,5 @@ body {
 </body>
 
 </html>
+
+
