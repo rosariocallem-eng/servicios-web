@@ -1,0 +1,275 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NovaStore | Tienda Online</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <p>Hasta 40% OFF en electro y tecnología</p>
+      <button class="topbar-btn">Ver campañas</button>
+    </div>
+  </header>
+
+  <nav class="main-nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#">NovaStore</a>
+      <ul class="menu">
+        <li><a href="#destacados">Destacados</a></li>
+        <li><a href="#categorias">Categorías</a></li>
+        <li><a href="#ofertas">Ofertas</a></li>
+        <li><a href="#contacto">Contáctanos</a></li>
+      </ul>
+      <button id="cartBtn" class="cart-btn" aria-label="Abrir carrito">
+        Carrito <span id="cartCount" class="badge">0</span>
+      </button>
+    </div>
+  </nav>
+
+  <section class="promo-slider" aria-label="Promociones principales">
+    <div class="wrap slider-shell">
+      <div class="slides" id="slides">
+        <article class="slide is-active">
+          <p class="slide-tag">Cyber Week</p>
+          <h2>Hasta 50% OFF en tecnología seleccionada</h2>
+          <p>Smart TV, laptops y audio con entrega en 24 horas.</p>
+          <a href="#destacados" class="cta">Ver ofertas tech</a>
+        </article>
+        <article class="slide">
+          <p class="slide-tag">Moda Flash</p>
+          <h2>2x1 en ropa y calzado de temporada</h2>
+          <p>Combina estilos y ahorra en tus marcas favoritas.</p>
+          <a href="#destacados" class="cta">Comprar moda</a>
+        </article>
+        <article class="slide">
+          <p class="slide-tag">Casa Renovada</p>
+          <h2>Muebles y línea blanca con súper precio</h2>
+          <p>Financia en cuotas sin interés y recojo en tienda.</p>
+          <a href="#destacados" class="cta">Ver hogar</a>
+        </article>
+      </div>
+      <div class="slider-controls">
+        <button id="prevSlide" class="slider-btn" aria-label="Slide anterior">‹</button>
+        <div id="sliderDots" class="slider-dots" aria-label="Indicadores del slider"></div>
+        <button id="nextSlide" class="slider-btn" aria-label="Siguiente slide">›</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="kicker">Campaña de temporada</p>
+        <h1>NovaStore: moda, hogar y tecnología en un solo lugar</h1>
+        <p>Inspirada en el estilo de retail peruano: promociones, cuotas y envío rápido.</p>
+        <a href="#destacados" class="cta">Comprar ahora</a>
+      </div>
+      <div class="hero-cards">
+        <article>
+          <h3>Hasta 12 cuotas</h3>
+          <p>Sin intereses en categorías seleccionadas.</p>
+        </article>
+        <article>
+          <h3>Recojo en tienda</h3>
+          <p>Disponible en 2 horas en productos elegibles.</p>
+        </article>
+        <article>
+          <h3>Garantía extendida</h3>
+          <p>Protección adicional para tus equipos.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust-strip">
+    <div class="wrap trust-grid">
+      <article>
+        <strong>+12,000</strong>
+        <p>Pedidos entregados</p>
+      </article>
+      <article>
+        <strong>4.8/5</strong>
+        <p>Calificación de clientes</p>
+      </article>
+      <article>
+        <strong>24h</strong>
+        <p>Despacho en Lima metropolitana</p>
+      </article>
+      <article>
+        <strong>100%</strong>
+        <p>Pago seguro y protegido</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="categorias" class="section wrap">
+    <div class="section-head">
+      <h2>Categorías principales</h2>
+    </div>
+    <div id="categoryTabs" class="chips"></div>
+  </section>
+
+  <main id="destacados" class="section wrap">
+    <div class="section-head">
+      <h2>Productos destacados</h2>
+      <p>Selecciona una categoría y agrega al carrito.</p>
+    </div>
+    <div id="productGrid" class="product-grid"></div>
+  </main>
+
+  <section id="ofertas" class="section offers">
+    <div class="wrap offer-band">
+      <div>
+        <h2>Ofertas relámpago</h2>
+        <p>Renovamos precios todos los días a las 9:00 a.m.</p>
+      </div>
+      <div class="countdown" aria-label="Cuenta regresiva de ofertas">
+        <p>Termina en</p>
+        <strong id="dealCountdown">--:--:--</strong>
+      </div>
+      <button class="outline">Activar alertas</button>
+    </div>
+  </section>
+
+  <section class="section wrap partner-brands">
+    <div class="section-head">
+      <h2>Marcas aliadas</h2>
+      <p>Catálogo compatible con campañas de marcas top.</p>
+    </div>
+    <div class="brand-cloud">
+      <span>Samsung</span>
+      <span>LG</span>
+      <span>Nike</span>
+      <span>Adidas</span>
+      <span>Oster</span>
+      <span>Mabe</span>
+      <span>HP</span>
+      <span>Xiaomi</span>
+    </div>
+  </section>
+
+  <section id="contacto" class="section wrap contact-section">
+    <div class="section-head">
+      <h2>Contáctanos</h2>
+      <p>¿Necesitas ayuda con tu compra? Escríbenos y te respondemos pronto.</p>
+    </div>
+    <div class="contact-grid">
+      <article class="contact-card">
+        <h3>Atención al cliente</h3>
+        <p><strong>Teléfono:</strong> (01) 700-0000</p>
+        <p><strong>WhatsApp:</strong> +51 999 888 777</p>
+        <p><strong>Email:</strong> ayuda@novastore.pe</p>
+        <p><strong>Horario:</strong> Lun - Sáb, 9:00 a.m. a 8:00 p.m.</p>
+        <div class="map-wrap">
+          <iframe
+            title="Ubicación NovaStore"
+            src="https://www.google.com/maps?q=Lima,+Peru&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </article>
+      <form class="contact-card contact-form">
+        <label for="nombre">Nombre</label>
+        <input id="nombre" type="text" placeholder="Tu nombre" />
+        <label for="correo">Correo</label>
+        <input id="correo" type="email" placeholder="tu@email.com" />
+        <label for="mensaje">Mensaje</label>
+        <textarea id="mensaje" rows="4" placeholder="Cuéntanos cómo te ayudamos"></textarea>
+        <button type="button" class="checkout">Enviar mensaje</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="section wrap testimonials">
+    <div class="section-head">
+      <h2>Clientes que ya venden más</h2>
+      <p>Casos reales de negocios que mejoraron su vitrina digital.</p>
+    </div>
+    <div class="testi-grid">
+      <article class="testi-card reveal">
+        <p>“La demo nos ayudó a cerrar 3 ventas B2B en una semana. Se ve profesional y transmite confianza.”</p>
+        <h4>Carla M.</h4>
+        <span>Gerente Comercial - Tienda Moda</span>
+      </article>
+      <article class="testi-card reveal">
+        <p>“Mis clientes entendieron rápido la propuesta y pidieron checkout real desde la primera reunión.”</p>
+        <h4>Luis P.</h4>
+        <span>Fundador - Electro Market</span>
+      </article>
+      <article class="testi-card reveal">
+        <p>“El diseño premium cambió la percepción de marca y elevó nuestro ticket promedio.”</p>
+        <h4>Andrea R.</h4>
+        <span>Directora - Home Decor</span>
+      </article>
+    </div>
+  </section>
+
+  <aside id="cartPanel" class="cart-panel" aria-hidden="true">
+    <div class="cart-header">
+      <h3>Tu carrito</h3>
+      <button id="closeCart" aria-label="Cerrar">✕</button>
+    </div>
+    <div id="cartItems" class="cart-items"></div>
+    <div class="cart-footer">
+      <div class="totals">
+        <span>Total</span>
+        <strong id="cartTotal">S/ 0.00</strong>
+      </div>
+      <button class="checkout">Ir a pagar</button>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <h3>NovaStore</h3>
+        <p>Demo de ecommerce para presentación comercial.</p>
+      </div>
+      <div>
+        <h4>Categorías</h4>
+        <p>Tecnología, Moda, Hogar, Dormitorio</p>
+      </div>
+      <div>
+        <h4>Soporte</h4>
+        <p>ayuda@novastore.pe</p>
+        <p>(01) 700-0000</p>
+      </div>
+    </div>
+  </footer>
+
+  <section class="payment-strip">
+    <div class="wrap pay-grid">
+      <div>
+        <h4>Medios de pago</h4>
+        <div class="pay-pills">
+          <span>Visa</span>
+          <span>Mastercard</span>
+          <span>Yape</span>
+          <span>Plin</span>
+        </div>
+      </div>
+      <div>
+        <h4>Envíos</h4>
+        <div class="pay-pills">
+          <span>Delivery 24h</span>
+          <span>Recojo en tienda</span>
+          <span>Envío nacional</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <a class="whatsapp-float" href="https://wa.me/51999888777" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+    WhatsApp
+  </a>
+
+  <script src="app.js"></script>
+</body>
+</html>
